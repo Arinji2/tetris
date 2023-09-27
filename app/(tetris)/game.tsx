@@ -31,39 +31,41 @@ export default function Game() {
       </h1>
       <section className="z-40 h-fit w-fit flex flex-col md:flex-row items-center justify-center gap-10 gap-y-0 shadow-[-5px_4px_0px_-0px_#66FCE1]  p-4 rounded-md">
         <Board currentBoard={board} />
-        <div className="w-fit h-fit flex flex-col items-center justify-center gap-3 md:mt-0 mt-3">
-          <h2 className="text-[#66FCE1] text-[20px]">Score: {score}</h2>
-          {!isPlaying ? (
-            <button
-              className="bg-[#5A5A5A] h-fit py-3 w-[150px] text-white rounded-sm"
-              onClick={() => {
-                if (vidRef.current) {
-                  vidRef.current.play();
-                }
-                startGame();
-              }}
-            >
-              New Game
-            </button>
-          ) : (
-            <button
-              className="bg-[#5A5A5A] h-fit py-3 w-[150px] text-white rounded-sm"
-              onClick={() => {
-                if (vidRef.current) {
-                  if (musicPaused) {
+        <div className="w-fit h-fit flex flex-row md:flex-col items-center justify-center gap-5 md:gap-3 md:mt-0 mt-3">
+          <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+            <h2 className="text-[#66FCE1] text-[20px]">Score: {score}</h2>
+            {!isPlaying ? (
+              <button
+                className="bg-[#5A5A5A] h-fit py-3 w-[150px] text-white rounded-sm"
+                onClick={() => {
+                  if (vidRef.current) {
                     vidRef.current.play();
-                  } else {
-                    vidRef.current.pause();
                   }
-                  setMusicPaused(!musicPaused);
-                }
-              }}
-            >
-              {musicPaused ? "Play Music" : "Pause Music"}
-            </button>
-          )}
+                  startGame();
+                }}
+              >
+                New Game
+              </button>
+            ) : (
+              <button
+                className="bg-[#5A5A5A] h-fit py-3 w-[150px] text-white rounded-sm"
+                onClick={() => {
+                  if (vidRef.current) {
+                    if (musicPaused) {
+                      vidRef.current.play();
+                    } else {
+                      vidRef.current.pause();
+                    }
+                    setMusicPaused(!musicPaused);
+                  }
+                }}
+              >
+                {musicPaused ? "Play Music" : "Pause Music"}
+              </button>
+            )}
+          </div>
 
-          <div className="w-full h-fit grid grid-cols-3 grid-rows-3 mt-3 md:mt-10">
+          <div className="w-full h-fit grid grid-cols-3 grid-rows-3 md:mt-10">
             <button
               className="col-start-1 flex flex-col items-end justify-center  row-start-2"
               onClick={() => {
