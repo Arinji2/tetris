@@ -5,9 +5,11 @@ import { useTetris } from "@/app/(tetris)/hooks/useTetris";
 import Image from "next/image";
 import * as React from "react";
 import { useRef, useEffect } from "react";
+import { useMobTetris } from "./hooks/useMobTetris";
 
 export default function Game() {
   const { board, isPlaying, startGame, score } = useTetris();
+  const MobTetris = useMobTetris();
   const [playMusic, setPlayMusic] = React.useState(false);
   useEffect(() => {
     setPlayMusic(isPlaying);
@@ -30,11 +32,22 @@ export default function Game() {
         TETRIS
       </h1>
       <section className="z-40 h-fit w-fit flex flex-col md:flex-row items-center justify-center gap-10 gap-y-0 shadow-[-5px_4px_0px_-0px_#66FCE1]  p-4 rounded-md">
-        <Board currentBoard={board} />
+        <div className="w-full h-full xl:block hidden">
+          <Board currentBoard={board} />{" "}
+        </div>
+        <div className="w-full h-full xl:hidden block">
+          <Board currentBoard={MobTetris.board} />
+        </div>
+
         <div className="w-fit h-fit flex flex-row md:flex-col items-center justify-center gap-5 md:gap-3 md:mt-0 mt-3">
           <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-            <h2 className="text-[#66FCE1] text-[20px]">Score: {score}</h2>
-            {!isPlaying ? (
+            <h2 className="text-[#66FCE1] text-[20px] xl:block hidden">
+              Score: {score}
+            </h2>
+            <h2 className="text-[#66FCE1] text-[20px] xl:hidden block">
+              Score: {MobTetris.score}
+            </h2>
+            {!isPlaying || !MobTetris.isPlaying ? (
               <button
                 className="bg-[#5A5A5A] h-fit py-3 w-[150px] text-white rounded-sm"
                 onClick={() => {
@@ -42,6 +55,7 @@ export default function Game() {
                     vidRef.current.play();
                   }
                   startGame();
+                  MobTetris.startGame();
                 }}
               >
                 New Game
