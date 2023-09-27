@@ -106,7 +106,7 @@ export default function Game() {
               }}
             >
               <Image
-                src="/tetris/Left.png"
+                src="/tetris/Left.svg"
                 alt="left"
                 width={30}
                 height={30}
@@ -140,7 +140,7 @@ export default function Game() {
               }}
             >
               <Image
-                src="/tetris/Up.png"
+                src="/tetris/Up.svg"
                 alt="up"
                 width={30}
                 height={30}
@@ -176,7 +176,7 @@ export default function Game() {
               }}
             >
               <Image
-                src="/tetris/Down.png"
+                src="/tetris/Down.svg"
                 alt="down"
                 width={30}
                 height={30}
@@ -210,7 +210,7 @@ export default function Game() {
               }}
             >
               <Image
-                src="/tetris/Right.png"
+                src="/tetris/Right.svg"
                 alt="right"
                 width={30}
                 height={30}
